@@ -13,6 +13,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    
     getOrders()
     .then(
       (orderData) => {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {postOrder} from '../../apiCalls';
 
 class OrderForm extends Component {
   constructor(props) {
@@ -24,8 +25,11 @@ class OrderForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const newOrder = {id: Date.now(), name: this.state.name, ingredients: this.state.ingredients}
+    const id = Date.now()
+    const newOrder = {id: id, name: this.state.name, ingredients: this.state.ingredients}
+    const postFormat = {id: id, name: this.state.name, ingredients: this.state.ingredients}
     this.props.submitOrder(newOrder)
+    postOrder(postFormat)
     this.clearInputs();
   }
 
@@ -58,10 +62,10 @@ class OrderForm extends Component {
         <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
 
         { (!this.state.name || this.state.ingredients.length < 1) ?
-        <button disabled='true' onClick={e => this.handleSubmit(e)}>
+        <button disabled={true} onClick={e => this.handleSubmit(e)}>
           Submit Order
         </button> : 
-        <button onClick={e => this.handleSubmit(e)}>
+        <button disabled={false} onClick={e => this.handleSubmit(e)}>
         Submit Order
         </button> 
         }
