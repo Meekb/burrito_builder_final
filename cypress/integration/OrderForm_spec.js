@@ -1,6 +1,13 @@
 describe('Order Form flow', () => {
 
   beforeEach(() => {
+    cy.intercept('GET', 'http://localhost:3001/api/v1/orders',
+    {
+      status: 200,
+      body: {
+        orders: [{id: 12345, name: 'Cosmo Flusterpants', ingredients: ['beans', 'steak', 'cilantro']}]
+      }
+    }).as('getCheck2')
     cy.visit('http://localhost:3000/')
   });
 
