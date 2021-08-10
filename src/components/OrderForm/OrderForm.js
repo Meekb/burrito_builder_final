@@ -6,7 +6,7 @@ class OrderForm extends Component {
     this.props = props;
     this.state = {
       name: '',
-      ingredients: []
+      ingredients: [],
     };
   }
 
@@ -57,9 +57,14 @@ class OrderForm extends Component {
 
         <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
 
-        <button onClick={e => this.handleSubmit(e)}>
+        { (!this.state.name || this.state.ingredients.length < 1) ?
+        <button disabled='true' onClick={e => this.handleSubmit(e)}>
           Submit Order
-        </button>
+        </button> : 
+        <button onClick={e => this.handleSubmit(e)}>
+        Submit Order
+        </button> 
+        }
       </form>
     )
   }
