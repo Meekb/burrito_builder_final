@@ -4,7 +4,7 @@ const getOrders = () => {
 } 
 
 
-const postOrder = (newOrder) => {
+const postOrder = async (newOrder) => {
 
   const postInfo = {
     method: 'POST',
@@ -15,19 +15,17 @@ const postOrder = (newOrder) => {
       ingredients: newOrder.ingredients
     })
   }
-  console.log(postInfo)
   fetch('http://localhost:3001/api/v1/orders', postInfo)
-    .then(response => {
-      console.log(response)
-    })
-
-}
-
-
-
-
-
-
+    // .then(async response => {
+    //   const dataIsJson = response.headers.get('content-type')?.includes('application/json');
+    //   const data = dataIsJson && await response.json();
+    //   if(!response.ok) {
+    //     const error = (data && data.message) || response.status;
+    //     return Promise.reject(error);
+    //   )
+    }
+  
+  
 
 export { getOrders, postOrder };
 

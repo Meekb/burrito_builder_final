@@ -22,20 +22,19 @@ class OrderForm extends Component {
     this.setState({ingredients: [...this.state.ingredients, newIngredient]})
   }
 
-
   handleSubmit = (e) => {
     e.preventDefault();
     const id = Date.now()
     const newOrder = {id: id, name: this.state.name, ingredients: this.state.ingredients}
     const postFormat = {id: id, name: this.state.name, ingredients: this.state.ingredients}
     this.props.submitOrder(newOrder)
-    postOrder(postFormat)
     this.clearInputs();
-  }
+    postOrder(postFormat)
+    };
 
   clearInputs = () => {
     this.setState({name: '', ingredients: []});
-  }
+  };
 
   render() {
     const possibleIngredients = ['beans', 'steak', 'carnitas', 'sofritas', 'lettuce', 'queso fresco', 'pico de gallo', 'hot sauce', 'guacamole', 'jalapenos', 'cilantro', 'sour cream'];
