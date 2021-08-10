@@ -22,12 +22,16 @@ class App extends Component {
     .catch(err => console.error('Error fetching:', err));
   }
 
+  submitOrder = (newOrder) => {
+    this.setState([...this.state.orders, newOrder])
+  }
+
   render() {
     return (
       <main className="App">
         <header>
           <h1>Burrito Builder</h1>
-          <OrderForm />
+          <OrderForm submitOrder={this.submitOrder}/>
         </header>
 
         <Orders orders={this.state.orders}/>
