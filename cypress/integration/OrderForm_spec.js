@@ -1,4 +1,4 @@
-describe('Order flow', () => {
+describe('Order Form flow', () => {
 
   beforeEach(() => {
     cy.visit('http://localhost:3000/')
