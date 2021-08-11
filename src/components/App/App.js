@@ -6,7 +6,7 @@ import OrderForm from '../../components/OrderForm/OrderForm';
 
 class App extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       orders: [],
       error: ''
@@ -39,6 +39,7 @@ class App extends Component {
     }
     await fetch('http://localhost:3001/api/v1/orders', postInfo)
     .then(response => response.json)
+    .then(this.setState({ orders: [...this.state.orders, newOrder] }))
     .catch(err => this.setState({ error: err.message})) 
   }
 
