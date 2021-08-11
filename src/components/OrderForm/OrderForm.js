@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import {postOrder} from '../../apiCalls';
+
 
 class OrderForm extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.props = props;
     this.state = {
       name: '',
@@ -28,8 +28,8 @@ class OrderForm extends Component {
     const newOrder = {id: id, name: this.state.name, ingredients: this.state.ingredients}
     const postFormat = {id: id, name: this.state.name, ingredients: this.state.ingredients}
     this.props.submitOrder(newOrder)
+    this.props.postOrder(postFormat)
     this.clearInputs();
-    postOrder(postFormat)
     };
 
   clearInputs = () => {
